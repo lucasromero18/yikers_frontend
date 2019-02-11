@@ -1,6 +1,20 @@
-<template>
+<template> 
   <div>
-  <h1>Navbar</h1>
+    <v-toolbar id='yikersnav'>
+      <v-btn icon to="/">
+        <v-icon large>mdi-alert-circle</v-icon>
+      </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon to="/createSituation">
+        <v-icon>mdi-pencil</v-icon>
+      </v-btn>
+
+      <v-btn icon to="/userProfile/:id">
+        <v-icon>mdi-account-edit</v-icon>
+      </v-btn>
+    </v-toolbar>
   </div>
 </template>
 
@@ -19,7 +33,9 @@ export default {
 </script>
 
 <style>
-
+#yikersnav {
+  background-color: #D50000
+}
 
 
 

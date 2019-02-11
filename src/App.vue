@@ -1,38 +1,47 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
-  </v-app>
+  <div>
+    <Navbar></Navbar>
+    <router-view></router-view>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+  import Navbar from './components/Navbar.vue'
+  import Home from './components/Home.vue'
+  import Login from './components/Login.vue'
+  import Register from './components/Register.vue'
+  import Categories from './components/Categories.vue'
+  import individualCategory from './components/individualCategory.vue'
+  import createSituation from './components/createSituation.vue'
+  import userProfile from './components/userProfile.vue'
+  import Footer from './components/Footer.vue'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  },
+    'Navbar': Navbar,
+    'Home': Home,
+    'Login': Login,
+    'Register': Register,
+    'Categories': Categories,
+    'individualCategory': individualCategory,
+    'createSituation': createSituation,
+    'userProfile': userProfile,
+    'Footer': Footer
+},
   data () {
     return {
-      //
+      
     }
   }
 }
+
 </script>
+
+<style>
+
+
+
+
+</style>
+

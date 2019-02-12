@@ -1,7 +1,7 @@
 <template>
-   <v-footer id="yikersFooter" height="40px">
+   <v-footer class='red darken-4' id="yikersFooter" height="40px">
     <v-layout justify-center row wrap>
-        &copy;2019 — <strong>Yikers</strong>
+        <h5 id="copyright">&copy;2019 — <strong>Yikers</strong></h5>
       </v-flex>
     </v-layout>
   </v-footer>
@@ -23,9 +23,14 @@ export default {
 
 <style>
 #yikersFooter{
-  background-color: '#D50000'
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
 }
-
+#copyright{
+  color: white;
+}
 
 
 </style>

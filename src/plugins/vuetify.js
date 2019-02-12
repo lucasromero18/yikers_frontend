@@ -6,7 +6,7 @@ import colors from 'vuetify/es5/util/colors'
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#ffd600',
+    primary: '#B71C1C',
     success: '#4CAF50',
   },
   iconfont: 'md',

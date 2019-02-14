@@ -2,6 +2,7 @@
 <div>
   <div id="headerContainer">
     <h1 id="yikersHeader">Yikers!</h1>
+    <h1 id="headerSlogan">Real life situations, how will you react to them?</h1>
   </div>
   <div class="flex-life">
     <div id="loginRegisterContainer">
@@ -32,6 +33,14 @@ export default {
 #headerContainer{
   margin-top: 4%;
   margin-bottom: 5%;
+  background-color: black;
+}
+
+#headerSlogan{
+  color: white;
+  font-family: 'Abel', sans-serif;
+  text-align: center;
+  padding-bottom: 1%;
 }
 
 #yikersHeader{
@@ -39,7 +48,6 @@ export default {
   text-align: center;
   font-size: 160px;
   color: white;
-  background-color: black;
   letter-spacing: 10px;
 }
 

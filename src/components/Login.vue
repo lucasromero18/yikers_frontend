@@ -44,6 +44,7 @@
    text-align: center;
    font-size: 75px;
    margin-top: 2%;
+   margin-bottom: 2%;
    letter-spacing: 3px;
 }
 

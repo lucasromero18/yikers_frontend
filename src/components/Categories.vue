@@ -6,9 +6,9 @@
   <div>
     <h2 id="description">Choose from various categories containing filtered situations of your choice!</h2>
   </div>
-  <div>
+  <div class="categoryContainer">
     <v-layout row wrap>
-      <v-flex  v-for="category in categories" class="categoryContainer" :key="`4${i}`" xs4>
+      <v-flex  v-for="category in categories" class="categoryDisplay":key="`4${i}`" xs4>
         <v-btn to="/individualCategory/:id" class="red darken-4" large><h1 class="categories">{{ category.category }}</h1></v-btn>
       </v-flex> 
     </v-layout>
@@ -24,20 +24,20 @@ export default {
       return{
         categories: [
           {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'},
-          {category: 'movies'}
+          {category: 'Home'},
+          {category: 'outside'},
+          {category: 'dog'},
+          {category: 'cat'},
+          {category: 'relationships'},
+          {category: 'boy'},
+          {category: 'girl'},
+          {category: 'school'},
+          {category: 'food'},
+          {category: 'travel'},
+          {category: 'work'},
+          {category: 'finance'},
+          {category: 'college'},
+          {category: 'groceries'}
         ]
       }
     }, 
@@ -63,16 +63,20 @@ export default {
   font-family: 'Abel', sans-serif;
 }
 
+
 .categoryContainer{
+  margin-bottom: 5%;
+}
+
+.categoryDisplay{
   justify-content: center;
   display: flex;
-  margin-bottom: 2%;
 }
 
 .categories{
   font-family: 'Bangers', cursive;
   color: white;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 
 

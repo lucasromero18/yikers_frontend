@@ -3,6 +3,12 @@
     <div>
       <h1 id="createSituationHeader">Create your own situation</h1>
      </div>
+     <div class="dropdownContainer">
+      <h1 class="labels">Pick a Category</h1>
+       <v-flex xs12 sm6 d-flex>
+        <v-select label="Category" outline :items="categories"></v-select>
+      </v-flex>
+      </div>
      <div>
       <h1 class="labels">Title</h1>
       <v-flex xs12 sm6 md3>
@@ -14,7 +20,7 @@
         </v-flex>
     </div>
     <div>
-    <h1 class="labels">Situation:</h1>
+    <h1 class="labels">Situation</h1>
       <v-container fluid grid-list-md>
     <v-textarea
       name="input-7-1"
@@ -33,12 +39,27 @@
 
 
 export default {
-    
   data () {
     return {
-      
+      categories: [
+          {id: 1, text: 'movies'},
+          {id: 2, text: 'barf'},
+          {id: 3, text: 'lucas'},
+          {id: 4, text: 'marcus'},
+          {id: 5, text: 'haha'},
+          {id: 6, text: 'blah'},
+          {id: 7, text: 'yaya'},
+          {id: 8, text: 'whats bood'},
+          {id: 9, text: 'lolol'},
+          {id: 10, text: 'wtf'},
+          {id: 11, text: 'option'},
+          {id: 12, text: 'squats'},
+          {id: 13, text: 'tired'},
+          {id: 14, text: 'CR'},
+          {id: 15, text: 'lel'}
+        ]
     }
-  }
+  },
 }
 
 </script>
@@ -49,6 +70,11 @@ export default {
   font-size: 50px;
   text-align: center;
   margin-top: 2%;
+}
+
+.dropdownContainer{
+  margin-left: 2%;
+  max-width: 45%;
 }
 
 .titleOutline{

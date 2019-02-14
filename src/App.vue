@@ -38,8 +38,6 @@ export default {
 
 </script>
 
-// 'http://localhost:8000/comments'
-
 <style>
 
 

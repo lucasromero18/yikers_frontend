@@ -4,23 +4,23 @@
       <h1 id="loginHeader">Login</h1>
   </div>
     <div class="formContainer">
-      <v-flex xs12 sm6 md3>
+      <v-flex xs12 sm8 md5>
             <v-text-field
               class="titleOutline"
               label="Username"
               outline
             ></v-text-field>
           </v-flex>
-          <v-flex xs12 sm6 md3>
+          <v-flex xs12 sm8 md5>
             <v-text-field
               class="titleOutline"
               label="Password"
               outline
             ></v-text-field>
           </v-flex>
-          <div id="buttonContainer">
-              <v-btn id="goButton" to="/categories" @click="submit">Go!</v-btn>
-            </div>
+            <v-flex id="buttonContainer" xs12 sm6 md3>
+              <v-btn id="goButtonLogin" to="/categories" @click="submit">Go!</v-btn>
+            </v-flex>
       </div>
   </div>
 </template>
@@ -49,18 +49,19 @@
 
 .formContainer{
   display: block;
-  margin-left: 42%;
+  margin-left: 36%;
 }
 
 #buttonContainer{
-  margin-bottom: 5%;
- text-align: center;
+ margin-left: 15%;
 }
 
-#goButton{
-    text-align: center;
+#goButtonLogin{
+  text-align: center;
   background-color: black !important;
   color: white !important;
+  margin-bottom: 5%;
+  font-family: 'Abel', sans-serif;
 }
 
 

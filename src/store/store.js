@@ -37,5 +37,5 @@ export const store = new Vuex.Store({
                 context.commit('displayComments', results)
             })
         },
-    }
+    },
 })

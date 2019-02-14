@@ -64,7 +64,8 @@ export default {
 .button{
   background-color: black !important;
   color: white !important;
-  margin-bottom: 5%
+  margin-bottom: 5%;
+  font-family: 'Abel', sans-serif;
 }
 
 

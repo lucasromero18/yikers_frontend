@@ -30,6 +30,7 @@ export default {
 }
 #copyright{
   color: white;
+  font-family: 'Abel', sans-serif;
 }
 
 

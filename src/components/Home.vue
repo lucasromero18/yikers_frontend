@@ -51,6 +51,7 @@ export default {
   text-align: center;
   background-color: black !important;
   color: white !important;
+  font-family: 'Abel', sans-serif;
 }
 .flex-life{
   display: flex;

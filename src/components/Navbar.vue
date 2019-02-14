@@ -4,7 +4,8 @@
       
      <a id="exclamation" depressed href="/"><h1>!</h1></a>
 
-      <v-spacer></v-spacer>
+      <v-spacer><h2 id="yikersNav">Yikers</h2></v-spacer>
+
 
       <v-btn icon to="/createSituation">
         <v-icon id="navIcon">mdi-pencil</v-icon>
@@ -43,6 +44,12 @@ export default {
   color: white;
   font-size: 40px;
   text-decoration: none;
+}
+
+#yikersNav{
+  font-family: 'Bangers', cursive;
+  text-align: center;
+  color: white;
 }
 
 

@@ -2,90 +2,51 @@
   <div>
     <div>
       <h1 id="registerHeader">Register</h1>
-  </div>
-    <form>
-      <div id="inputContainer">
-    <v-text-field
-      v-model="username"
-      label="userame"
-      data-vv-name="username"
-      required
-    ></v-text-field>
-    <v-text-field
-      v-model="email"
-      v-validate="'required|email'"
-      label="email"
-      data-vv-name="email"
-      required
-    ></v-text-field>
-    <v-text-field
-      v-model="age"
-      v-validate="'required|age'"
-      label="age"
-      data-vv-name="age"
-      required
-    ></v-text-field>
-    <v-text-field
-      v-model="password"
-      v-validate="'required|password'"
-      label="password"
-      data-vv-name="password"
-      required
-    ></v-text-field>
     </div>
-    <div id="registerButtonContainer">
-      <v-btn id="goButton" to="/login" @click="submit">Go!</v-btn>
+    <div class="formContainer">
+      <v-flex xs12 sm6 md3>
+            <v-text-field
+              class="titleOutline"
+              label="Username"
+              outline
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs12 sm6 md3>
+            <v-text-field
+              class="titleOutline"
+              label="Email"
+              outline
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs12 sm6 md3>
+            <v-text-field
+              class="titleOutline"
+              label="Age"
+              outline
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs12 sm6 md3>
+            <v-text-field
+              class="titleOutline"
+              label="Password"
+              outline
+            ></v-text-field>
+          </v-flex>
+          <div id="buttonContainer">
+              <v-btn id="goButton" to="/login" @click="submit">Go!</v-btn>
+            </div>
+        </div>
       </div>
-  </form>
-  </div>
 </template>
 
 <script>
 
- import Vue from 'vue'
- import VeeValidate from 'vee-validate'
 
-  Vue.use(VeeValidate)
 
 export default {
-      $_veeValidate: {
-      validator: 'new'
-    },
+    data(){
+      return{
 
-    data: () => ({
-      username: '',
-      email: '',
-      age: '',
-      password: '',
-      dictionary: {
-        attributes: {
-          email: 'E-mail Address'
-          // custom attributes
-        },
-        custom: {
-          name: {
-            required: () => 'Name can not be empty',
-            max: 'The name field may not be greater than 10 characters'
-            // custom messages
-          }
-        }
-      }
-    }),
-
-    mounted () {
-      this.$validator.localize('en', this.dictionary)
-    },
-
-    methods: {
-      submit () {
-        this.$validator.validateAll()
-      },
-      clear () {
-        this.name = ''
-        this.email = ''
-        this.age = ''
-        this.password = ''
-        this.$validator.reset()
       }
     }
 }
@@ -94,28 +55,24 @@ export default {
 
 <style>
 #registerHeader{
-   font-family: 'Bangers', cursive;
-   text-align: center;
-   font-size: 75px;
-   margin-top: 4%;
-   letter-spacing: 3px;
-   color: white;
-   background-color: black;
+  font-family: 'Bangers', cursive;
+  text-align: center;
+  font-size: 75px;
+  margin-top: 2%;
+  letter-spacing: 3px;
 }
 
-#registerButtonContainer{
-  display: flex;
-  justify-content: center;
-}
-
-#inputContainer{
-  width: 40%;
-  display: block;
+.formContainer{
   justify-content: center !important;
 }
 
+#buttonContainer{
+  margin-bottom: 5%;
+}
+
+
 #goButton{
-    text-align: center;
+  margin: auto;
   background-color: black !important;
   color: white !important;
 }

@@ -3,6 +3,7 @@ import './plugins/vuetify'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import Routes from './routes'
+import { store } from './store/store'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
@@ -16,5 +17,8 @@ const router = new VueRouter({
 
 new Vue({
   router,
+  store, 
   render: h => h(App),
 }).$mount('#app')
+
+

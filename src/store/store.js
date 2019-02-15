@@ -7,6 +7,7 @@ Vue.use(Vuex, axios)
 export const store = new Vuex.Store({
     state: {
         users: [],
+        auth: {},
         categories: [],
         situations: [],
         comments: [],
@@ -14,28 +15,42 @@ export const store = new Vuex.Store({
     },
     actions: {
         getCategories(context) {
-            return 
-            axios.get('http://localhost:8000/categories').then((results) => {
-              context.commit('displayCategories', results)
+            console.log('running category action')
+            return axios.get('http://localhost:8000/categories').then((results) => {
+                context.commit('getCategories', results.data)
             })
           },
         getUsers(context) {
-            return
-            axios.get('http://localhost:8000/users').then((results) => {
-                context.commit('displayUsers', results)
+            console.log('running user action')
+            return axios.get('http://localhost:8000/users').then((results) => {
+                context.commit('getUsers', results.data)
             })
         },
         getSituations(context) {
-            return
-            axios.get('http://localhost:8000/situations').then((results) => {
-                context.commit('displaySituations', results)
+            console.log('running situation action')
+            return axios.get('http://localhost:8000/situations').then((results) => {
+                context.commit('getSituations', results.data)
             })
         },
         getComments(context) {
-            return
-            axios.get('http://localhost:8000/comments').then((results) => {
-                context.commit('displayComments', results)
+            console.log('running comment action')
+            return axios.get('http://localhost:8000/comments').then((results) => {
+                context.commit('getComments', results.data)
             })
         },
     },
+    mutations: {
+        getCategories(state, categories){
+            state.categories = categories;
+        },
+        getUsers(state, users){
+            state.users = users;
+        },
+        getSituations(state, situations){
+            state.situations = situations;
+        },
+        getComments(state, comments){
+            state.comments = comments;
+        }
+    }
 })

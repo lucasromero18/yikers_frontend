@@ -8,8 +8,8 @@
   </div>
   <div class="categoryContainer">
     <v-layout row wrap>
-      <v-flex  v-for="category in categories" class="categoryDisplay":key="`4${i}`" xs4>
-        <v-btn to="/individualCategory/:id" class="red darken-4" large><h1 class="categories">{{ category.category }}</h1></v-btn>
+      <v-flex  v-for="category in categories" class="categoryDisplay":key="`${category.id}`" xs4>
+        <v-btn to="/individualCategory/`${id}`" class="red darken-4" large><h1 class="categories">{{ category.category }}</h1></v-btn>
       </v-flex> 
     </v-layout>
   </div>
@@ -22,27 +22,15 @@
 export default {
     data(){
       return{
-        categories: [
-          {category: 'movies'},
-          {category: 'Home'},
-          {category: 'outside'},
-          {category: 'dog'},
-          {category: 'cat'},
-          {category: 'relationships'},
-          {category: 'boy'},
-          {category: 'girl'},
-          {category: 'school'},
-          {category: 'food'},
-          {category: 'travel'},
-          {category: 'work'},
-          {category: 'finance'},
-          {category: 'college'},
-          {category: 'groceries'}
-        ]
       }
     }, 
     created(){
       this.$store.dispatch('getCategories')
+    },
+    computed: {
+      categories(){
+        return this.$store.state.categories;
+      }
     }
 }
 
@@ -65,7 +53,7 @@ export default {
 
 
 .categoryContainer{
-  margin-bottom: 5%;
+  margin-bottom: 8%;
 }
 
 .categoryDisplay{

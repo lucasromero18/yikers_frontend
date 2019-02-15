@@ -60,7 +60,7 @@ export default {
   font-size: 75px;
   margin-top: 2%;
   letter-spacing: 3px;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
 }
 
 .formContainer{

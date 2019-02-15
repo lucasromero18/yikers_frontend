@@ -41,25 +41,17 @@
 export default {
   data () {
     return {
-      categories: [
-          {id: 1, text: 'movies'},
-          {id: 2, text: 'barf'},
-          {id: 3, text: 'lucas'},
-          {id: 4, text: 'marcus'},
-          {id: 5, text: 'haha'},
-          {id: 6, text: 'blah'},
-          {id: 7, text: 'yaya'},
-          {id: 8, text: 'whats bood'},
-          {id: 9, text: 'lolol'},
-          {id: 10, text: 'wtf'},
-          {id: 11, text: 'option'},
-          {id: 12, text: 'squats'},
-          {id: 13, text: 'tired'},
-          {id: 14, text: 'CR'},
-          {id: 15, text: 'lel'}
-        ]
+
     }
   },
+  created(){
+    this.$store.dispatch('getCategories')
+  },
+  computed: {
+  categories(){
+     return this.$store.state.categories.map(category => category.category)
+    }
+  }
 }
 
 </script>

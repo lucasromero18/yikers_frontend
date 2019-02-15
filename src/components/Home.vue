@@ -5,10 +5,7 @@
     <h1 id="headerSlogan">Real life situations, how will you react to them?</h1>
   </div>
   <div class="flex-life">
-    <div id="loginRegisterContainer">
-        <v-btn  class="loginRegister" to="/login" large>Login</v-btn>
-        <v-btn  class="loginRegister" to="/register" large>Register</v-btn>
-    </div>
+   <Categories />
     
   </div>
 </div>
@@ -17,6 +14,7 @@
 
 <script>
 
+ import Categories from './Categories.vue'
 
 export default {
     
@@ -24,6 +22,9 @@ export default {
     return {
       
     }
+  },
+  components: {
+    Categories
   }
 }
 
@@ -32,7 +33,7 @@ export default {
 <style>
 #headerContainer{
   margin-top: 4%;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
   background-color: black;
 }
 
@@ -40,7 +41,7 @@ export default {
   color: white;
   font-family: 'Abel', sans-serif;
   text-align: center;
-  padding-bottom: 1%;
+  padding-bottom: 2%;
 }
 
 #yikersHeader{

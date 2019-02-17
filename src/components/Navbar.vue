@@ -2,9 +2,9 @@
   <div>
     <v-toolbar class='red darken-4' id='yikersnav'>
       
-     <a id="exclamation" depressed href="/"><h1>!</h1></a>
+     <router-link id="exclamation" depressed to="/"><h1>!</h1></router-link>
 
-      <v-spacer><h2 id="yikersNav">Yikers</h2></v-spacer>
+      <v-spacer><h2 v-if="isLoggedIn" id="yikersNav">Yikers</h2></v-spacer>
 
 
       <v-btn v-if="isLoggedIn" icon to="/createSituation">
@@ -62,6 +62,7 @@ export default {
   color: white;
   font-family: 'Bangers', cursive;
   text-decoration: none;
+  font-size: 20px;
 }
 
 .register{
@@ -69,6 +70,7 @@ export default {
   font-family: 'Bangers', cursive;
   text-decoration: none;
   margin-left: 20px;
+  font-size: 20px;
 }
 
 

@@ -15,9 +15,40 @@
               label="Filter Search" solo class="sortBy"></v-text-field>
             <v-btn class="filterButton">Filter</v-btn>
           </v-flex>
+        </v-layout>
+      </v-container>
+    </div>
+
+    <v-container class="situationsContainer">
+       <v-layout row>
+    <v-flex xs12 >
+      <v-card>
+
+        <v-card-title primary-title>
+          <div>
+            <div class="headline">Top western road trips</div>
+            <span class="grey--text">1,000 miles of wonder</span>
+          </div>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-btn flat>Share</v-btn>
+          <v-btn flat color="purple">Explore</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn icon @click="show = !show">
+            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+          </v-btn>
+        </v-card-actions>
+
+        <v-slide-y-transition>
+          <v-card-text v-show="show">
+           This is where the comments will populate on the situation.
+          </v-card-text>
+        </v-slide-y-transition>
+          </v-card>
+        </v-flex>
       </v-layout>
     </v-container>
-    </div>
   </div>
 </template>
 
@@ -28,7 +59,8 @@ export default {
     
   data () {
     return {
-      items: ['Most Recent', 'Most Rated', 'Trending']
+      items: ['Most Recent', 'Most Rated', 'Trending'],
+      show: false
     }
   },
   created(){
@@ -56,8 +88,6 @@ margin-top: 2%;
 display: flex;
 }
 
-.sortBy{
-}
 
 .filterButton{
   background-color: black !important;
@@ -65,12 +95,14 @@ display: flex;
   font-family: 'Abel', sans-serif;
 }
 
-.filterSearchInput{
-}
 
 #filterButton{
   background-color: black;
   color: white;
+}
+
+.situationsContainer{
+  width: 100%;
 }
 
 

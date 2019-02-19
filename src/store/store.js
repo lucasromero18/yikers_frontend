@@ -13,6 +13,17 @@ export const store = new Vuex.Store({
         comments: [],
         filteredSearch: ""
     },
+    getters: {
+        getCategoryByCategoryId: (state) => (category_id) => {
+            return state.categories.filter(category => category.id == category_id)[0];
+        },
+        getUsersByUserId: (state) => (user_id) => {
+            return state.users.filter(user => user.id == user_id)[0];
+        },
+        getSituationBySituationId: (state) => (situation_id) => {
+            return state.situations.filter(situation => situation.id == situation_id)[0];
+        }
+    },
     actions: {
         getCategories(context) {
             console.log('running category action')

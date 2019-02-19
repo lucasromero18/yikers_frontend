@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 id="categoryName">Category Name</h1>
+    <h1 id="categoryName">{{category.category}}</h1>
     <div class="sortBySearchContainer">
     <v-container class="situationContainer">
       <v-layout row wrap>
@@ -21,18 +21,13 @@
 
     <v-container>
        <v-layout row>
-        <v-flex xs12 >
+        <v-flex xs12>
           <v-card class="cardContainer">
             <v-card-title class="situationsContainer" primary-title>
             <div>
-              <div class="usernameSituation">@username</div>
-              <h2 class="headline">Situation</h2>
-              <span class="situationText">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa 
-              quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur 
-              aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem 
-              sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
-              dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? 
-              Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</span>
+              <div class="usernameSituation">@{{ user.username }}</div>
+              <h2 class="headline">{{ situation.title }}</h2>
+              <span class="situationText">{{ situation.situation }}</span>
             </div>
           </v-card-title>
              <v-card-actions class="links">
@@ -42,7 +37,7 @@
               </div>
               <div class="buttonContainer">
               <v-btn class="viewSolution" icon @click="show = !show">
-                <span class="showNoShow">{{ show ? 'Close' : 'See *usernames* Solution' }}</span>
+                <span class="showNoShow">{{ show ? 'Close' : 'See ' + user.username + ' Solution' }}</span>
               </v-btn>
               </div>
             </v-card-actions>
@@ -50,15 +45,11 @@
             <div>
               <v-card-text class="solutionText" v-show="show">
               <h1 id="solution">Solution</h1>
-              <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa 
-              quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur 
-              aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa 
-              quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur 
-              aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem.</span>
+              <span>{{ situation.solution }}</span>
               <h1 id="yikersScaleHeader">Rate this solution with the Yikers scale!</h1>
               <v-slider class="slider" v-model="value" step="5" thumb-label></v-slider>
               <v-flex class="commentInputContainer" xs6>
-              <v-textarea outline name="input-7-4" label="Leave a Comment" value=""></v-textarea>
+              <v-textarea outline name="input-7-4" label='Leave a Comment' value=""></v-textarea>
               <v-btn id="addComment">Add Comment</v-btn>
               </v-flex>
             </v-card-text>
@@ -90,14 +81,14 @@ export default {
    this.$store.dispatch('getComments')
   },
   computed: {
-    categories(){
-      return this.$store.state.categories
+    category(){
+      return this.$store.getters.getCategoryByCategoryId(this.$route.params.id);
     },
-    users(){
-      return this.$store.state.users
+    user(){
+    return this.$store.getters.getUsersByUserId(this.$route.params.id);
     },
-    situations(){
-      return this.$store.state.situations
+    situation(){
+      return this.$store.getters.getSituationBySituationId(this.$route.params.id);
     },
     comments(){
       return this.$store.state.comments
@@ -110,9 +101,10 @@ export default {
 <style>
 #categoryName{
   font-family: 'Bangers', cursive;
-  font-size: 50px;
+  font-size: 80px;
   text-align: center;
   margin-top: 2%;
+  letter-spacing: 2px;
 }
 
 .sortBySearchContainer{
@@ -177,6 +169,7 @@ display: flex;
    font-family: 'Bangers', cursive;
    color: #b71c1c;
    margin-left: 60%; 
+   margin-top: 2%;
 }
 
 .slider{

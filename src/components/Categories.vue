@@ -9,7 +9,7 @@
   <div class="categoryContainer">
     <v-layout row wrap>
       <v-flex  v-for="category in categories" class="categoryDisplay":key="`${category.id}`" xs4>
-        <v-btn to="/individualCategory/`${id}`" class="red darken-4" large><h1 class="categories">{{ category.category }}</h1></v-btn>
+        <v-btn :to="`/individualCategory/${category.id}`" class="red darken-4" large><h1 class="categories">{{ category.category }}</h1></v-btn>
       </v-flex> 
     </v-layout>
   </div>

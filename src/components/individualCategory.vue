@@ -44,13 +44,19 @@
             <v-slide-y-transition>
             <div>
               <v-card-text class="solutionText" v-show="show">
-              <h1 id="solution">Solution</h1>
-              <span>{{ situation.solution }}</span>
-              <h1 id="yikersScaleHeader">Rate this solution with the Yikers scale!</h1>
-              <v-slider class="slider" v-model="value" step="5" thumb-label></v-slider>
-              <v-flex class="commentInputContainer" xs6>
-              <v-textarea outline name="input-7-4" label='Leave a Comment' value=""></v-textarea>
-              <v-btn id="addComment">Add Comment</v-btn>
+                <h1 id="solution">Solution</h1>
+                <span>{{ situation.solution }}</span>
+                <div  v-for="c in userComments">
+                <h1 id="commentUsername">@{{c.username}}</h1>
+                <div class="commentContainer">
+                  <span>{{c.comment}}</span>
+                  </div>
+                </div>
+                <h1 id="yikersScaleHeader">Rate this solution with the Yikers scale!</h1>
+                <v-slider class="slider" v-model="value" step="5" thumb-label></v-slider>
+                <v-flex class="commentInputContainer" xs6>
+                <v-textarea outline name="input-7-4" label='Leave a Comment' value=""></v-textarea>
+                <v-btn id="addComment">Add Comment</v-btn>
               </v-flex>
             </v-card-text>
             </div>
@@ -90,8 +96,8 @@ export default {
     situation(){
       return this.$store.getters.getSituationBySituationId(this.$route.params.id);
     },
-    comments(){
-      return this.$store.state.comments
+    userComments(){
+    return this.$store.getters.getUserCommentsBySituationId(this.$route.params.id);
     }
   }
 }
@@ -162,6 +168,17 @@ display: flex;
 .solutionText{
   font-family: 'Abel', sans-serif;
   font-size: 20px;
+}
+
+#commentUsername{
+   font-family: 'Bangers', cursive;
+   font-size: 20px;
+   letter-spacing: 2px;
+   margin-top: 2%;
+}
+
+.commentContainer{
+
 }
 
 #yikersScaleHeader{

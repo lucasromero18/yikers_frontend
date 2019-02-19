@@ -22,7 +22,14 @@ export const store = new Vuex.Store({
         },
         getSituationBySituationId: (state) => (situation_id) => {
             return state.situations.filter(situation => situation.id == situation_id)[0];
-        }
+        },
+        getCommentByCommentId: (state) => (comment_id) => {
+            return state.comments.filter(comment => comment.id == comment_id);
+        },
+        getUserCommentsBySituationId: (state) => (situation_id) => {
+            return state.comments.filter(comment => comment.id == situation_id).map(comment => { return {...comment, 
+                username: state.users.find(u => u.id == comment.user_id).username} })
+        }   
     },
     actions: {
         getCategories(context) {

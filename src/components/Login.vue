@@ -3,37 +3,60 @@
     <div>
       <h1 id="loginHeader">Login</h1>
   </div>
-    <div class="formContainer">
+    <form @submit.prevent="login" class="formContainer">
       <v-flex xs12 sm8 md5>
-            <v-text-field
+            <v-text-field v-model="username"
               class="titleOutline"
               label="Username"
               outline
             ></v-text-field>
           </v-flex>
           <v-flex xs12 sm8 md5>
-            <v-text-field
+            <v-text-field v-model="password"
               class="titleOutline"
               label="Password"
               outline
             ></v-text-field>
           </v-flex>
             <v-flex id="buttonContainer" xs12 sm6 md3>
-              <v-btn id="goButtonLogin" to="/categories" @click="submit">Go!</v-btn>
+              <v-btn id="goButtonLogin" @click="login" type="submit">Go!</v-btn>
             </v-flex>
-      </div>
+      </form>
   </div>
 </template>
 
 <script>
-
+import axios from 'axios'
 
   export default {
      data(){
        return{
-
+          username: "",
+          password: ""
        }
-     }
+     },
+     methods: {
+      login () {
+      axios.post('http://localhost:8000/login', {
+      username: this.username,
+      password: this.password
+      })
+      .then(res => {
+        console.log(res)
+        console.log('YO', res.config)
+        console.log('you logged in')
+        this.$store.state.isLoggedIn = true;
+        this.$store.state.user = {
+          'token': res.data.token, 'user_id': res.config.data, 'username': res.data.username
+        }
+        this.$router.push('/')
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
+  });
+      }
+    }
   }
 
 </script>

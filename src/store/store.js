@@ -11,7 +11,8 @@ export const store = new Vuex.Store({
         categories: [],
         situations: [],
         comments: [],
-        filteredSearch: ""
+        filteredSearch: "",
+        isLoggedIn: false
     },
     getters: {
         getCategoryByCategoryId: (state) => (category_id) => {

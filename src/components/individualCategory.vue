@@ -54,6 +54,7 @@
                 </div>
                 <h1 id="yikersScaleHeader">Rate this solution with the Yikers scale!</h1>
                 <v-slider class="slider" v-model="value" step="5" thumb-label></v-slider>
+                <v-btn id="rateButton">Rate!</v-btn>
                 <v-flex class="commentInputContainer" xs6>
                 <v-textarea outline name="input-7-4" label='Leave a Comment' value=""></v-textarea>
                 <v-btn id="addComment">Add Comment</v-btn>
@@ -209,6 +210,9 @@ display: flex;
   font-family: 'Bangers', cursive;
 }
 
+#rateButton{
+  margin-left: 60%;
+}
 
 
 </style>

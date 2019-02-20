@@ -7,18 +7,18 @@
       <v-spacer><h2 v-if="isLoggedIn" id="yikersNav">Yikers</h2></v-spacer>
 
 
-      <v-btn v-if="isLoggedIn" icon to="/createSituation">
+      <v-btn v-if="this.$store.state.isLoggedIn" icon to="/createSituation">
         <v-icon id="navIcon">mdi-pencil</v-icon>
       </v-btn>
 
-      <v-btn v-if="isLoggedIn" icon to="/userProfile/:id">
+      <v-btn v-if="this.$store.state.isLoggedIn" icon to="/userProfile/:id">
         <v-icon id="navIcon">mdi-account-edit</v-icon>
       </v-btn>
       <div>
-        <router-link class="login" to="/login" v-if="!isLoggedIn">Login</router-link>
+        <router-link class="login" to="/login" v-if="!this.$store.state.isLoggedIn">Login</router-link>
       </div>
       <div>
-        <router-link class="register" to="/register" v-if="!isLoggedIn">Register</router-link>
+        <router-link class="register" to="/register" v-if="!this.$store.state.isLoggedIn">Register</router-link>
       </div>
     </v-toolbar>
   </div>
@@ -31,7 +31,7 @@ export default {
     
   data () {
     return {
-      isLoggedIn: false
+
     }
   }
 }

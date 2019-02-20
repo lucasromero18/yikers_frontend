@@ -5,48 +5,61 @@
     </div>
     <div class="formContainer">
       <v-flex xs12 sm8 md5>
-            <v-text-field
+            <v-text-field v-model="username"
               class="titleOutline"
               label="Username"
               outline
             ></v-text-field>
           </v-flex>
           <v-flex xs12 sm8 md5>
-            <v-text-field
+            <v-text-field v-model="email"
               class="titleOutline"
               label="Email"
               outline
             ></v-text-field>
           </v-flex>
           <v-flex xs12 sm8 md5>
-            <v-text-field
+            <v-text-field v-model="age"
               class="titleOutline"
               label="Age"
               outline
             ></v-text-field>
           </v-flex>
           <v-flex xs12 sm8 md5>
-            <v-text-field
+            <v-text-field v-model="password"
               class="titleOutline"
               label="Password"
               outline
             ></v-text-field>
           </v-flex>
           <v-flex id="buttonContainer" xs12 sm6 md3>
-              <v-btn id="goButtonRegister" to="/login" @click="submit">Go!</v-btn>
+              <v-btn id="goButtonRegister" @click="register">Go!</v-btn>
           </v-flex>
         </div>
       </div>
 </template>
 
 <script>
-
+import axios from 'axios'
 
 
 export default {
     data(){
       return{
-
+        username: "",
+        email: "",
+        age: "",
+        password: ""
+      }
+    },
+    methods: {
+      register(){
+      axios.post('http://localhost:8000/api/register').then( (response) => {
+      console.log(response);
+      this.$router.push('/login')
+    }).catch( (error) => {
+      console.log(error);
+    })
       }
     }
 }

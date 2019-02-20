@@ -172,13 +172,16 @@ display: flex;
 
 #commentUsername{
    font-family: 'Bangers', cursive;
-   font-size: 20px;
+   font-size: 15px;
    letter-spacing: 2px;
    margin-top: 2%;
 }
 
 .commentContainer{
-
+  background-color: #b71c1c;
+  width: 40%;
+  color: white;
+  padding: 2px;
 }
 
 #yikersScaleHeader{

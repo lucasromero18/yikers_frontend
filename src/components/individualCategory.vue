@@ -22,22 +22,18 @@
     <v-container>
        <v-layout row>
         <v-flex xs12>
-          <v-card class="cardContainer">
+          <v-card v-for="situation in situations" class="cardContainer">
             <v-card-title class="situationsContainer" primary-title>
             <div>
-              <div class="usernameSituation">@{{ user.username }}</div>
+              <div class="usernameSituation">@{{ situation.user.username }}</div>
               <h2 class="headline">{{ situation.title }}</h2>
               <span class="situationText">{{ situation.situation }}</span>
             </div>
           </v-card-title>
              <v-card-actions class="links">
-              <div>
-                <v-btn flat>Like</v-btn>
-                <v-btn flat>Dislike</v-btn>
-              </div>
               <div class="buttonContainer">
               <v-btn class="viewSolution" icon @click="show = !show">
-                <span class="showNoShow">{{ show ? 'Close' : 'See ' + user.username + ' Solution' }}</span>
+                <span class="showNoShow">{{ show ? 'Close' : 'See ' + situation.user.username + ' Solution' }}</span>
               </v-btn>
               </div>
             </v-card-actions>
@@ -46,7 +42,8 @@
               <v-card-text class="solutionText" v-show="show">
                 <h1 id="solution">Solution</h1>
                 <span>{{ situation.solution }}</span>
-                <div  v-for="c in userComments">
+                <h1 id="commentsHeader">Comments</h1>
+                <div  v-for="c in userComments(situation.id)">
                 <h1 id="commentUsername">@{{c.username}}</h1>
                 <div class="commentContainer">
                   <span>{{c.comment}}</span>
@@ -91,14 +88,13 @@ export default {
     category(){
       return this.$store.getters.getCategoryByCategoryId(this.$route.params.id);
     },
-    user(){
-    return this.$store.getters.getUsersByUserId(this.$route.params.id);
-    },
-    situation(){
-      return this.$store.getters.getSituationBySituationId(this.$route.params.id);
-    },
-    userComments(){
-    return this.$store.getters.getUserCommentsBySituationId(this.$route.params.id);
+    situations(){
+      return this.$store.getters.getSituationByCategoryId(this.$route.params.id);
+    }
+  },
+  methods:{
+    userComments(id){
+      return this.$store.getters.getUserCommentsBySituationId(id);
     }
   }
 }
@@ -152,6 +148,7 @@ display: flex;
   font-size: 20px;
 }
 
+
 .showNoShow{
   font-family: 'Abel', sans-serif;
 }
@@ -169,6 +166,13 @@ display: flex;
 .solutionText{
   font-family: 'Abel', sans-serif;
   font-size: 20px;
+}
+
+#commentsHeader{
+  font-family: 'Bangers', cursive;
+  color: #b71c1c;
+  font-size: 25px;
+  margin-top: 2%;
 }
 
 #commentUsername{
@@ -190,7 +194,7 @@ display: flex;
    font-family: 'Bangers', cursive;
    color: #b71c1c;
    margin-left: 60%; 
-   margin-top: 2%;
+   margin-top: 1%;
 }
 
 .slider{
@@ -212,6 +216,9 @@ display: flex;
 
 #rateButton{
   margin-left: 60%;
+  color: white;
+  background-color: #b71c1c;
+  font-family: 'Bangers', cursive;
 }
 
 

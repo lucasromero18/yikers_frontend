@@ -19,7 +19,7 @@
             ></v-text-field>
           </v-flex>
             <v-flex id="buttonContainer" xs12 sm6 md3>
-              <v-btn id="goButtonLogin" @click="login" type="submit">Go!</v-btn>
+              <v-btn id="goButtonLogin" @click="login">Go!</v-btn>
             </v-flex>
       </form>
   </div>
@@ -27,6 +27,7 @@
 
 <script>
 import axios from 'axios'
+import jwt from 'jsonwebtoken'
 
   export default {
      data(){
@@ -37,17 +38,22 @@ import axios from 'axios'
      },
      methods: {
       login () {
+        console.log(this.username, this.password)
       axios.post('http://localhost:8000/login', {
       username: this.username,
       password: this.password
       })
       .then(res => {
         console.log(res)
-        console.log('YO', res.config)
+        res.data = JSON.parse(res.data);
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('user_id', res.data.user.id)
+        console.log('this is the res', res)
         console.log('you logged in')
         this.$store.state.isLoggedIn = true;
-        this.$store.state.user = {
-          'token': res.data.token, 'user_id': res.config.data, 'username': res.data.username
+
+        this.$store.state.auth = {
+          user: jwt.decode(localStorage.getItem('token'))
         }
         this.$router.push('/')
     })

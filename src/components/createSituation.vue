@@ -6,13 +6,13 @@
      <div class="dropdownContainer">
       <h1 class="labels">Pick a Category</h1>
        <v-flex xs12 sm6 d-flex>
-        <v-select label="Category" outline :items="categories"></v-select>
+        <v-select label="Category" v-model="sectionCategory" outline :items="categories"></v-select>
       </v-flex>
       </div>
      <div>
       <h1 class="labels">Title</h1>
       <v-flex xs12 sm6 md3>
-          <v-text-field
+          <v-text-field v-model="title"
             class="titleOutline"
             label="Title"
             outline
@@ -22,14 +22,22 @@
     <div>
     <h1 class="labels">Situation</h1>
       <v-container fluid grid-list-md>
-    <v-textarea
+    <v-textarea v-model="situation"
       name="input-7-1"
       label="Situation"
       box
       auto-grow
       value=""
     ></v-textarea>
-    <v-btn class="button">Submit</v-btn>
+    <h1 class="labels">Solution</h1>
+    <v-textarea v-model="solution"
+      name="input-7-1"
+      label="Solution"
+      box
+      auto-grow
+      value=""
+    ></v-textarea>
+    <v-btn @click="submit" class="button">Submit</v-btn>
   </v-container>
     </div>
   </div>
@@ -41,7 +49,10 @@
 export default {
   data () {
     return {
-
+      sectionCategory: "",
+      title: "",
+      situation: "",
+      solution: ''
     }
   },
   created(){
@@ -49,7 +60,21 @@ export default {
   },
   computed: {
   categories(){
-     return this.$store.state.categories.map(category => category.category)
+     return this.$store.state.categories.map(category => {return {text:category.category, value: category.id}})
+    }
+  },
+  methods: {
+    submit(){
+      return this.$store.dispatch('addSituation', {
+        user_id: localStorage.getItem('user_id'),
+        category_id: this.sectionCategory,
+        title: this.title,
+        situation: this.situation,
+        solution: this.solution
+      }).then(()=>{
+        this.$router.push('/individualCategory/'+this.sectionCategory);
+        alert("your sitch has been added");
+      })
     }
   }
 }

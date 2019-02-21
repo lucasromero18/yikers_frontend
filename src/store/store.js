@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
         situations: [],
         comments: [],
         filteredSearch: "",
-        isLoggedIn: false
+        isLoggedIn: localStorage.getItem('token') || false
     },
     getters: {
         getCategoryByCategoryId: (state) => (category_id) => {
@@ -21,8 +21,10 @@ export const store = new Vuex.Store({
         getUsersByUserId: (state) => (user_id) => {
             return state.users.filter(user => user.id == user_id)[0];
         },
-        getSituationBySituationId: (state) => (situation_id) => {
-            return state.situations.filter(situation => situation.id == situation_id)[0];
+        getSituationByCategoryId: (state) => (category_id) => {
+            return state.situations.filter(situation => situation.category_id == category_id).map(situation=> {
+                return {...situation, user: state.users.filter(user=>user.id==situation.user_id)[0]};
+            });
         },
         getCommentByCommentId: (state) => (comment_id) => {
             return state.comments.filter(comment => comment.id == comment_id);
@@ -31,8 +33,14 @@ export const store = new Vuex.Store({
             return state.comments.filter(comment => comment.id == situation_id).map(comment => { return {...comment, 
                 username: state.users.find(u => u.id == comment.user_id).username} })
         },
-        getLoggedIn: state => state.isLoggedIn   
-    },
+
+        getLoggedIn: state => state.isLoggedIn,
+        
+        addSituation: (state) => (situation_id) => {
+            return state.situations.filter(situation => situation.id == situation_id)
+        },
+    }, 
+
     actions: {
         getCategories(context) {
             console.log('running category action')
@@ -58,6 +66,12 @@ export const store = new Vuex.Store({
                 context.commit('getComments', results.data)
             })
         },
+        addSituation(context, payload) {
+            console.log('payload',payload)
+            return axios.post('http://localhost:8000/situations/addSituation', payload).then((results) => {
+                context.commit('addSituation', results.data)
+            })
+        }
     },
     mutations: {
         getCategories(state, categories){
@@ -71,6 +85,9 @@ export const store = new Vuex.Store({
         },
         getComments(state, comments){
             state.comments = comments;
+        },
+        addSituation(state, situation){
+            state.situations = [...state.situations, situation];
         }
     }
 })

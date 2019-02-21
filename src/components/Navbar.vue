@@ -30,7 +30,13 @@
 export default {
   computed: {
     isLoggedIn() {
+      console.log(this.$store.getters.getLoggedIn)
       return this.$store.getters.getLoggedIn
+    },
+    user(){
+      return {
+        id: 1
+      }
     }
   }
 }

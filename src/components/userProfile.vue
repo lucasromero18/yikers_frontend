@@ -2,7 +2,7 @@
   <div>
     <div class="picUsernameContainer">
         <img id="image" src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" alt="profileImage">
-        <h1 id="username">Username</h1>
+        <h1 id="username">{{user.username}}</h1>
     </div>
     <div>
        <div class="userFormContainer">
@@ -57,6 +57,14 @@ export default {
   data () {
     return {
       
+    }
+  },
+  created(){
+   this.$store.dispatch('getUsers')
+  },
+  computed: {
+    user(){
+    return this.$store.getters.getUsersByUserId(this.$route.params.id);
     }
   }
 }

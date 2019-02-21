@@ -54,7 +54,12 @@ export default {
     },
     methods: {
       register(){
-      axios.post('http://localhost:8000/api/register').then( (response) => {
+      axios.post('http://localhost:8000/register',{
+      username: this.username,
+      email: this.email,
+      age: this.age,
+      password: this.password,
+    }).then( (response) => {
       console.log(response);
       this.$router.push('/login')
     }).catch( (error) => {

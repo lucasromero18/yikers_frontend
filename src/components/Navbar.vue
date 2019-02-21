@@ -11,7 +11,7 @@
         <v-icon id="navIcon">mdi-pencil</v-icon>
       </v-btn>
 
-      <v-btn v-if="this.$store.state.isLoggedIn" icon to="/userProfile/:id">
+      <v-btn v-if="this.$store.state.isLoggedIn" icon :to="`/userProfile/${user.id}`">
         <v-icon id="navIcon">mdi-account-edit</v-icon>
       </v-btn>
       <div>
@@ -31,7 +31,7 @@ export default {
     
   data () {
     return {
-
+      isLoggedIn: false
     }
   }
 }

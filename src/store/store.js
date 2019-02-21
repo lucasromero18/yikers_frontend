@@ -30,7 +30,8 @@ export const store = new Vuex.Store({
         getUserCommentsBySituationId: (state) => (situation_id) => {
             return state.comments.filter(comment => comment.id == situation_id).map(comment => { return {...comment, 
                 username: state.users.find(u => u.id == comment.user_id).username} })
-        }   
+        },
+        getLoggedIn: state => state.isLoggedIn   
     },
     actions: {
         getCategories(context) {

@@ -33,7 +33,7 @@
              <v-card-actions class="links">
               <div class="buttonContainer">
               <v-btn class="viewSolution" icon @click="show = !show">
-                <span class="showNoShow">{{ show ? 'Close' : 'See ' + situation.user.username + ' Solution' }}</span>
+                <span class="showNoShow">{{ show ? 'Close' : 'See ' + situation.user.username +  ' Solution' }}</span>
               </v-btn>
               </div>
             </v-card-actions>
@@ -43,18 +43,18 @@
                 <h1 id="solution">Solution</h1>
                 <span>{{ situation.solution }}</span>
                 <h1 id="commentsHeader">Comments</h1>
-                <div  v-for="c in userComments(situation.id)">
-                <h1 id="commentUsername">@{{c.username}}</h1>
-                <div class="commentContainer">
-                  <span>{{c.comment}}</span>
+                <div :key="forceUpdater"  v-for="c in userComments(situation.id)">
+                  <h1 id="commentUsername">@{{c.username}}</h1>
+                  <div class="commentContainer">
+                    <span>{{c.comment}}</span>
                   </div>
                 </div>
                 <h1 id="yikersScaleHeader">Rate this solution with the Yikers scale!</h1>
                 <v-slider class="slider" v-model="value" step="5" thumb-label></v-slider>
                 <v-btn id="rateButton">Rate!</v-btn>
                 <v-flex class="commentInputContainer" xs6>
-                <v-textarea outline name="input-7-4" label='Leave a Comment' value=""></v-textarea>
-                <v-btn id="addComment">Add Comment</v-btn>
+                <v-textarea outline v-model='comment' name="input-7-4" label='Leave a Comment' value=""></v-textarea>
+                <v-btn @click="submit(situation.id)" id="addComment">Add Comment</v-btn>
               </v-flex>
             </v-card-text>
             </div>
@@ -73,9 +73,11 @@ export default {
     
   data () {
     return {
-      items: ['Most Recent', 'Most Rated', 'Trending'],
+      items: ['Most Recent', 'Most Rate', 'Trending'],
       show: false,
-      value: 0
+      value: 0,
+      comment: "",
+      situation_id: ""
     }
   },
   created(){
@@ -83,6 +85,7 @@ export default {
    this.$store.dispatch('getCategories'),
    this.$store.dispatch('getSituations'),
    this.$store.dispatch('getComments')
+   this.$store.dispatch('addComments')
   },
   computed: {
     category(){
@@ -95,6 +98,16 @@ export default {
   methods:{
     userComments(id){
       return this.$store.getters.getUserCommentsBySituationId(id);
+    },
+    submit(sit_id){
+      return this.$store.dispatch('addComment', {
+        user_id: localStorage.getItem('user_id'),
+        situation_id: sit_id,
+        comment: this.comment
+      }).then(()=>{
+        window.location.reload();
+        console.log('this is yo comment', this.comment);
+      })
     }
   }
 }

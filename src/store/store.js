@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex'
 import axios from 'axios'
+import { stat } from 'fs';
 
 Vue.use(Vuex, axios)
 
@@ -30,11 +31,11 @@ export const store = new Vuex.Store({
             return state.comments.filter(comment => comment.id == comment_id);
         },
         getUserCommentsBySituationId: (state) => (situation_id) => {
-            return state.comments.filter(comment => comment.id == situation_id).map(comment => { return {...comment, 
+            return state.comments.filter(comment => comment.situation_id == situation_id).map(comment => { return {...comment, 
                 username: state.users.find(u => u.id == comment.user_id).username} })
         },
 
-        getLoggedIn: state => state.isLoggedIn,
+        getLoggedIn: (state) => state.isLoggedIn,
         
         addSituation: (state) => (situation_id) => {
             return state.situations.filter(situation => situation.id == situation_id)
@@ -71,6 +72,11 @@ export const store = new Vuex.Store({
             return axios.post('http://localhost:8000/situations/addSituation', payload).then((results) => {
                 context.commit('addSituation', results.data)
             })
+        },
+        addComment(context, payload) {
+            return axios.post('http://localhost:8000/comments/addComment', payload).then((results) => {
+                context.commit('addComment', results.data)
+            })
         }
     },
     mutations: {
@@ -88,6 +94,9 @@ export const store = new Vuex.Store({
         },
         addSituation(state, situation){
             state.situations = [...state.situations, situation];
+        },
+        addComment(state, comment){
+            state.comments = [...state.comments, comment]
         }
     }
 })

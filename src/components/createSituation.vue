@@ -52,7 +52,7 @@ export default {
       sectionCategory: "",
       title: "",
       situation: "",
-      solution: ''
+      solution: ""
     }
   },
   created(){
@@ -73,7 +73,7 @@ export default {
         solution: this.solution
       }).then(()=>{
         this.$router.push('/individualCategory/'+this.sectionCategory);
-        alert("your sitch has been added");
+        alert("Your situation to has been added!");
       })
     }
   }
